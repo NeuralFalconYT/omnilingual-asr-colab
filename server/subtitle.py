@@ -1,5 +1,8 @@
 import re
 import os 
+import uuid
+import json
+
 def convert_time_to_srt_format(seconds):
     """Converts seconds to the standard SRT time format (HH:MM:SS,ms)."""
     hours = int(seconds // 3600)
@@ -83,7 +86,7 @@ def merge_punctuation_glitches(subtitles):
 
     return cleaned
 
-import json
+
 def write_sentence_srt(
     word_level_timestamps, output_file="subtitles_professional.srt", max_lines=2,
     max_duration_s=7.0, max_chars_per_line=38, hard_pause_threshold=0.5,
@@ -206,10 +209,10 @@ def write_sentence_srt(
 def make_subtitle(word_level_timestamps,file_path):
   os.makedirs("./subtitles/",exist_ok=True)
   file_name = os.path.splitext(os.path.basename(file_path))[0]
-
-  word_level_srt_file=f"./subtitles/{file_name}_subtitle_words.srt"
-  sentence_srt_file=f"./subtitles/{file_name}_subtitle_sentences.srt"
-  shorts_srt_file=f"./subtitles/{file_name}_subtitle_shorts.srt"
+  unique_id = str(uuid.uuid4())[:6] 
+  word_level_srt_file=f"./subtitles/{file_name}_subtitle_word_level_{unique_id}.srt"
+  sentence_srt_file=f"./subtitles/{file_name}_subtitle_sentences_{unique_id}.srt"
+  shorts_srt_file=f"./subtitles/{file_name}_subtitle_reels_{unique_id}.srt"
   word_level_srt(
       word_level_timestamps,
       srt_path=word_level_srt_file,
