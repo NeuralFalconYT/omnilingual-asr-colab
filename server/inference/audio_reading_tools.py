@@ -43,4 +43,5 @@ def wav_to_bytes(
     sf.write(buffer, wav, sample_rate, format=sf_format, subtype=subtype)
 
     buffer.seek(0)
-    return np.frombuffer(buffer.getvalue(), dtype=np.int8)
+    # return np.frombuffer(buffer.getvalue(), dtype=np.int8)
+    return buffer.read()
