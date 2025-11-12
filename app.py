@@ -93,7 +93,6 @@ def ui():
         gr.HTML("""
         <div style="text-align: center; margin: 20px auto; max-width: 800px;">
             <h1 style="font-size: 2.5em; margin-bottom: 10px;">omniasr-transcriptions</h1>
-            <p style="font-size: 1.2em; color: #555; margin-bottom: 15px;">Run these models omniASR_CTC_300M, omniASR_CTC_1B, omniASR_LLM_300M, and omniASR_LLM_1B on Google Colab using the free T4 GPU.</p>
             <a href="https://github.com/NeuralFalconYT/omnilingual-asr-colab" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 6px; text-decoration: none; font-size: 1em;">😇 Run on Google Colab</a>
         </div>
         """)
