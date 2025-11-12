@@ -12,6 +12,7 @@ from inference.mms_model_pipeline import MMSModel
 from media_transcription_processor import MediaTranscriptionProcessor
 from subtitle import make_subtitle
 from lang_dict import lang_code  # ✅ your language dictionary
+import download_models
 
 warnings.filterwarnings("ignore", category=UserWarning, module="torchaudio")
 
@@ -168,6 +169,5 @@ def main(debug, share, model):
 
 if __name__ == "__main__":
     main()
-
 
 
