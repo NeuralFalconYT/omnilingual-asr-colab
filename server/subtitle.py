@@ -207,9 +207,9 @@ def make_subtitle(word_level_timestamps,file_path):
   os.makedirs("./subtitles/",exist_ok=True)
   file_name = os.path.splitext(os.path.basename(file_path))[0]
 
-  word_level_srt_file=f"./subtitles/{file_name}/subtitle_words.srt"
-  sentence_srt_file=f"./subtitles/{file_name}/subtitle_sentences.srt"
-  shorts_srt_file=f"./subtitles/{file_name}/subtitle_shorts.srt"
+  word_level_srt_file=f"./subtitles/{file_name}_subtitle_words.srt"
+  sentence_srt_file=f"./subtitles/{file_name}_subtitle_sentences.srt"
+  shorts_srt_file=f"./subtitles/{file_name}_subtitle_shorts.srt"
   word_level_srt(
       word_level_timestamps,
       srt_path=word_level_srt_file,
@@ -233,4 +233,4 @@ def make_subtitle(word_level_timestamps,file_path):
       max_duration_s=2.0,
       max_chars_per_line=17
   )
-  return sentence_srt_file,word_level_srt_file,shorts_srt_file
+  return sentence_json,word_level_srt_file,shorts_srt_file
