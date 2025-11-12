@@ -203,7 +203,7 @@ def write_sentence_srt(
     print(f"Successfully generated SRT file: {output_file}")
     print(f"Successfully generated JSON file: {json_output_file}")
     return json_output_file
-def make_subtitle(word_level_timestamps,file_name):
+def make_subtitle(word_level_timestamps,file_path):
   os.makedirs("./subtitles/",exist_ok=True)
   file_name = os.path.splitext(os.path.basename(file_path))[0]
 
