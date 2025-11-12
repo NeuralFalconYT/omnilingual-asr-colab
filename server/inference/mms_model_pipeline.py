@@ -1,3 +1,5 @@
+#@title fix import and path /content/omniasr-transcriptions/server/inference/mms_model_pipeline.py
+# %%writefile /content/omniasr-transcriptions/server/inference/mms_model_pipeline.py
 """
 Pipeline-based MMS Model using the official MMS library.
 This implementation uses Wav2Vec2LlamaInferencePipeline to avoid Seq2SeqBatch complexity.
@@ -7,7 +9,9 @@ import logging
 import os
 import torch
 from typing import List, Dict, Any, Optional
-from omnilingual_asr.models.inference.pipeline import Wav2Vec2InferencePipeline
+# from omnilingual_asr.models.inference.pipeline import Wav2Vec2InferencePipeline
+from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
+
 from omnilingual_asr.models.wav2vec2_llama.lang_ids import supported_langs
 
 from inference.audio_reading_tools import wav_to_bytes
@@ -58,13 +62,18 @@ class MMSModel:
         logger.info(f"Target device: {self.device}")
 
         # Debug FAIRSEQ2_CACHE_DIR environment variable
-        fairseq2_cache_dir = os.environ.get('FAIRSEQ2_CACHE_DIR')
+        # fairseq2_cache_dir = os.environ.get('FAIRSEQ2_CACHE_DIR')
+        fairseq2_cache_dir = os.environ.get('FAIRSEQ2_CACHE_DIR',"./models")
         logger.info(f"DEBUG: FAIRSEQ2_CACHE_DIR = {fairseq2_cache_dir}")
 
         try:
             # Convert device to string if it's a torch.device object
             device_str = str(self.device) if hasattr(self.device, 'type') else str(self.device)
-            self.pipeline = Wav2Vec2InferencePipeline(
+            # self.pipeline = Wav2Vec2InferencePipeline(
+            #     model_card=self.model_card,
+            #     device=device_str
+            # )
+            self.pipeline = ASRInferencePipeline(
                 model_card=self.model_card,
                 device=device_str
             )
