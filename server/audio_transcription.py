@@ -194,7 +194,8 @@ def perform_forced_alignment(
         # Perform alignment using get_one_row_alignments
         logger.info("Performing alignment...")
         logger.info(f"About to call get_one_row_alignments with:")
-        logger.info(f"  audio_arr type: {type(audio_arr)}, shape: {audio_arr.shape}")
+        # logger.info(f"  audio_arr type: {type(audio_arr)}, shape: {audio_arr.shape}")
+        logger.info(f"audio_arr type: {type(audio_arr)}")
         logger.info(
             f"  alignment_tokens type: {type(alignment_tokens)}, length: {len(alignment_tokens)}"
         )
@@ -862,4 +863,5 @@ def transcribe_full_audio_with_chunking(
             "total_duration": 0.0,
             "error": str(e),
         }
+
 
