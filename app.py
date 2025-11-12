@@ -93,7 +93,7 @@ def ui():
     with gr.Blocks(theme=gr.themes.Soft(),css=custom_css) as demo:
         gr.HTML("""
         <div style="text-align: center; margin: 20px auto; max-width: 800px;">
-            <h1 style="font-size: 2.5em; margin-bottom: 10px;">omniasr-transcriptions</h1>
+            <h1 style="font-size: 2.5em; margin-bottom: 10px;">Meta Omnilingual ASR</h1>
             <a href="https://github.com/NeuralFalconYT/omnilingual-asr-colab" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 6px; text-decoration: none; font-size: 1em;">😇 Run on Google Colab</a>
         </div>
         """)
