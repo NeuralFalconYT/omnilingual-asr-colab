@@ -52,17 +52,28 @@ from numpy.typing import NDArray
 
 
 
-def wav_to_bytes(wav, sample_rate=16000, format="wav"):
-    if isinstance(wav, torch.Tensor):
-        wav = wav.detach().cpu().numpy()
 
+def wav_to_bytes(wav: torch.Tensor | np.ndarray, sample_rate: int = 16000, format: str = "wav"):
+    """Convert audio tensor to bytes using soundfile directly (safe + dtype fix)."""
+
+    # ✅ Convert to numpy if torch tensor
+    if isinstance(wav, torch.Tensor):
+        wav = wav.detach().cpu()
+        if wav.dtype == torch.bfloat16:
+            wav = wav.to(torch.float32)  # FIX: convert unsupported dtype
+        elif wav.dtype != torch.float32:
+            wav = wav.float()
+        wav = wav.numpy()
+
+    # ✅ Handle empty or multi-dim cases
     if wav.ndim > 1:
         wav = wav.squeeze()
     if wav.size == 0:
         raise ValueError("Empty audio segment passed to wav_to_bytes")
 
+    # ✅ Ensure valid range and dtype
     wav = wav.astype(np.float32)
-    wav = np.clip(wav, -1.0, 1.0)
+    wav = np.nan_to_num(np.clip(wav, -1.0, 1.0))
 
     buffer = io.BytesIO()
     try:
@@ -73,5 +84,6 @@ def wav_to_bytes(wav, sample_rate=16000, format="wav"):
 
     buffer.seek(0)
     return np.frombuffer(buffer.getvalue(), dtype=np.int8)
+
 
 
