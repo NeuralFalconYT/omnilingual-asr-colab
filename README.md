@@ -1,5 +1,7 @@
 
 # 🎙️ Meta Omnilingual ASR (Gradio App)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NeuralFalconYT/omnilingual-asr-colab/blob/main/Meta_Omnilingual_ASR.ipynb) <br>
+[![HuggingFace Space Demo](https://img.shields.io/badge/🤗-Space%20demo-yellow)](https://huggingface.co/spaces/NeuralFalcon/Omnilingual-ASR-Colab)
 
 This project adapts the official **[facebook/omniasr-transcriptions](https://huggingface.co/spaces/facebook/omniasr-transcriptions)** by **Meta AI**,
 which was originally built as a **Flask application**, into a **Gradio App**.
