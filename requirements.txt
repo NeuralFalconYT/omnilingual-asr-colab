@@ -1,0 +1,13 @@
+# Uninstall not needed here; pip will handle version replacement automatically
+
+# PyTorch (CUDA 12.8 build)
+torch==2.8.0+cu128 \
+    --index-url https://download.pytorch.org/whl/cu128
+torchvision==0.19.0+cu128 \
+    --index-url https://download.pytorch.org/whl/cu128
+torchaudio==2.8.0+cu128 \
+    --index-url https://download.pytorch.org/whl/cu128
+
+# Fairseq2 and Omnilingual ASR
+fairseq2n==0.6
+omnilingual-asr==0.1.0
