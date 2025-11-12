@@ -127,9 +127,10 @@ def perform_forced_alignment(
             audio_tensor_cpu, sample_rate=sample_rate, format="wav"
         )
 
-        logger.info(
-            f"Converted audio to bytes: shape={audio_arr.shape}, dtype={audio_arr.dtype}"
-        )
+        # logger.info(
+        #     f"Converted audio to bytes: shape={audio_arr.shape}, dtype={audio_arr.dtype}"
+        # )
+        logger.info(f"Converted audio to bytes: {len(audio_arr)} bytes")
 
         # Preprocess tokens for MMS alignment model using the same approach as TextRomanizer
         # The MMS alignment model expects romanized tokens in the same format as text_sentences_tokens
@@ -861,3 +862,4 @@ def transcribe_full_audio_with_chunking(
             "total_duration": 0.0,
             "error": str(e),
         }
+
