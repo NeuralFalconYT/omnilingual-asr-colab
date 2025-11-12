@@ -100,6 +100,16 @@ def ui():
         gr.HTML("""
         <div style="text-align: center; margin: 20px auto; max-width: 800px;">
             <h1 style="font-size: 2.5em; margin-bottom: 10px;">Meta Omnilingual ASR</h1>
+            <p style="font-size: 1.2em; color: #333; margin-bottom: 15px;">
+                Converting the official 
+                <a href="https://huggingface.co/spaces/facebook/omniasr-transcriptions" 
+                   target="_blank" 
+                   style="color: #1a73e8; font-weight: 600; text-decoration: none;">
+                   facebook/omniasr-transcriptions
+                </a> 
+                Flask application into a Gradio App.
+            </p>
+
             <a href="https://github.com/NeuralFalconYT/omnilingual-asr-colab" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 6px; text-decoration: none; font-size: 1em;">😇 Run on Google Colab</a>
         </div>
         """)
