@@ -25,7 +25,14 @@ class MediaTranscriptionProcessor:
     """
 
     # Maximum duration (in seconds) before a transcription is considered stuck
-    MAX_TRANSCRIPTION_DURATION = 120  # 2 minutes
+    # MAX_TRANSCRIPTION_DURATION = 120  # 2 minutes
+
+    # For long meetings (1 hour max)
+    # MAX_TRANSCRIPTION_DURATION = 3600  
+
+    # Or disable timeout entirely
+    MAX_TRANSCRIPTION_DURATION = float("inf")
+
 
     def __init__(self, media_bytes: bytes, filename: str, language_with_script: str = None):
         """Initialize processor with media data and metadata."""
@@ -323,4 +330,5 @@ class MediaTranscriptionProcessor:
     def __del__(self):
         """Destructor - final cleanup attempt."""
         if not self._cleanup_performed:
+
             self.cleanup()
