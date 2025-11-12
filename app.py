@@ -68,9 +68,11 @@ def media_transcription(file_path, lang_code="eng_Latn"):
         {"word": s['text'], "start": s['start'], "end": s['end']}
         for s in results.get('aligned_segments', [])
     ]
-
-    sentence_srt, word_level_srt, shorts_srt = make_subtitle(word_level_timestamps, file_path)
-    return transcription, sentence_srt, word_level_srt, shorts_srt
+    if word_level_timestamps:
+        sentence_srt, word_level_srt, shorts_srt = make_subtitle(word_level_timestamps, file_path)
+        return transcription, sentence_srt, word_level_srt, shorts_srt
+    else:
+        return transcription,None,None,None
 
 
 
