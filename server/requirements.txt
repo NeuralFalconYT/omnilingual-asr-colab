@@ -1,1 +1,24 @@
+flask==3.0.0
+flask-cors==4.0.0
+gunicorn==21.2.0
 
+# Audio processing
+torchaudio<=2.8.0
+torchcodec
+librosa==0.10.1
+soundfile==0.12.1
+audioread>=3.0.0
+pydub>=0.25.1
+
+# VAD and audio chunking
+silero-vad>=4.0.0
+onnxruntime>=1.12.0
+
+# Text processing
+uroman
+
+# Data structures and utilities
+dataclasses
+pandas
+xxhash
+requests==2.31.0
