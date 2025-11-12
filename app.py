@@ -99,23 +99,27 @@ def ui():
     lang_list = list(lang_code.keys())
     custom_css = """.gradio-container { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; }"""
     with gr.Blocks(theme=gr.themes.Soft(),css=custom_css) as demo:
+        # gr.HTML("""
+        # <div style="text-align: center; margin: 20px auto; max-width: 800px;">
+        #     <h1 style="font-size: 2.5em; margin-bottom: 10px;">Meta Omnilingual ASR</h1>
+        #     <p style="font-size: 1.2em; color: #333; margin-bottom: 15px;">
+        #         Converting the official 
+        #         <a href="https://huggingface.co/spaces/facebook/omniasr-transcriptions" 
+        #            target="_blank" 
+        #            style="color: #1a73e8; font-weight: 600; text-decoration: none;">
+        #            facebook/omniasr-transcriptions
+        #         </a> 
+        #         Flask application into a Gradio App. Running omniASR_LLM_300M on CPU.
+        #     </p>
+
+        #     <a href="https://github.com/NeuralFalconYT/omnilingual-asr-colab" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 6px; text-decoration: none; font-size: 1em;">😇 Run on Google Colab</a>
+        # </div>
+        # """)
         gr.HTML("""
         <div style="text-align: center; margin: 20px auto; max-width: 800px;">
             <h1 style="font-size: 2.5em; margin-bottom: 10px;">Meta Omnilingual ASR</h1>
-            <p style="font-size: 1.2em; color: #333; margin-bottom: 15px;">
-                Converting the official 
-                <a href="https://huggingface.co/spaces/facebook/omniasr-transcriptions" 
-                   target="_blank" 
-                   style="color: #1a73e8; font-weight: 600; text-decoration: none;">
-                   facebook/omniasr-transcriptions
-                </a> 
-                Flask application into a Gradio App.
-            </p>
-
-            <a href="https://github.com/NeuralFalconYT/omnilingual-asr-colab" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 6px; text-decoration: none; font-size: 1em;">😇 Run on Google Colab</a>
-        </div>
+            </div>
         """)
-
         with gr.Row():
             with gr.Column():
                 audio_input = gr.Audio(sources=[ "microphone","upload"], type="filepath", label="🎙 Upload or Record Audio")
@@ -160,7 +164,7 @@ import click
 )
 @click.option(
     "--model",
-    default="omniASR_LLM_1B",
+    default="omniASR_LLM_300M",
     type=click.Choice([
         "omniASR_CTC_300M",
         "omniASR_CTC_1B",
