@@ -1,13 +1,24 @@
-# Uninstall not needed here; pip will handle version replacement automatically
+flask==3.0.0
+flask-cors==4.0.0
+gunicorn==21.2.0
 
-# PyTorch (CUDA 12.8 build)
-torch==2.8.0+cu128 \
-    --index-url https://download.pytorch.org/whl/cu128
-torchvision==0.19.0+cu128 \
-    --index-url https://download.pytorch.org/whl/cu128
-torchaudio==2.8.0+cu128 \
-    --index-url https://download.pytorch.org/whl/cu128
+# Audio processing
+torchaudio<=2.8.0
+torchcodec
+librosa==0.10.1
+soundfile==0.12.1
+audioread>=3.0.0
+pydub>=0.25.1
 
-# Fairseq2 and Omnilingual ASR
-fairseq2n==0.6
-omnilingual-asr==0.1.0
+# VAD and audio chunking
+silero-vad>=4.0.0
+onnxruntime>=1.12.0
+
+# Text processing
+uroman
+
+# Data structures and utilities
+dataclasses
+pandas
+xxhash
+requests==2.31.0
