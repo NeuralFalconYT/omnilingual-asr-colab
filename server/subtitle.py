@@ -233,4 +233,4 @@ def make_subtitle(word_level_timestamps,file_path):
       max_duration_s=2.0,
       max_chars_per_line=17
   )
-  return sentence_json,word_level_srt_file,shorts_srt_file
+  return sentence_srt_file,word_level_srt_file,shorts_srt_file
