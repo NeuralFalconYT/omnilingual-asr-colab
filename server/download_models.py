@@ -86,6 +86,6 @@ def main():
 
     print("✅ All model files are ready!")
 
-
-if __name__ == "__main__":
-    main()
+main()
+# if __name__ == "__main__":
+#     main()
