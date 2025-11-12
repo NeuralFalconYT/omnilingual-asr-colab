@@ -11,10 +11,16 @@ from inference.audio_sentence_alignment import AudioAlignment
 from inference.mms_model_pipeline import MMSModel
 from media_transcription_processor import MediaTranscriptionProcessor
 from subtitle import make_subtitle
-from lang_dict import lang_code  # ✅ your language dictionary
+from lang_dict import lang_code  
 import download_models
 
-warnings.filterwarnings("ignore", category=UserWarning, module="torchaudio")
+# warnings.filterwarnings("ignore", category=UserWarning, module="torchaudio")
+warnings.filterwarnings(
+    "ignore",
+    message=".*torchaudio.functional._alignment.forced_align.*",
+    category=UserWarning
+)
+
 
 # ---- Setup Model Globals ----
 _model_loaded = False
@@ -67,7 +73,7 @@ def media_transcription(file_path, lang_code="eng_Latn"):
     return transcription, sentence_srt, word_level_srt, shorts_srt
 
 
-# ---- Gradio Interface ----
+
 def transcribe_interface(audio, selected_lang):
     """Main Gradio wrapper."""
     if audio is None:
@@ -77,7 +83,7 @@ def transcribe_interface(audio, selected_lang):
     file_path = audio
     find_lang_code = lang_code[selected_lang]
 
-    print(f"🎙 Transcribing {file_path} in {selected_lang} ({find_lang_code})...")
+    # print(f"🎙 Transcribing {file_path} in {selected_lang} ({find_lang_code})...")
 
     try:
         transcription, sentence_srt, word_level_srt, shorts_srt = media_transcription(file_path, find_lang_code)
