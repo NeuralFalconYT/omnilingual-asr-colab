@@ -162,24 +162,58 @@ class AudioAlignment:
 
         spans = get_spans(tokens, segments)
 
+        # audio_segments = []
+        # for span in spans:
+        #     seg_start_idx, seg_end_idx = span[0].start, span[-1].end
+        #     segment_start_sec = seg_start_idx * stride / self.scale
+        #     segment_end_sec = seg_end_idx * stride / self.scale
+        #     start_frame = int(segment_start_sec * reading_sr)
+        #     end_frame = int(segment_end_sec * reading_sr)
+        #     trimmed_waveform = waveform[:, start_frame:end_frame]
+
+        #     audio_segments.append(
+        #         {
+        #             "segment_start_sec": segment_start_sec,
+        #             "segment_end_sec": segment_end_sec,
+        #             "segment_duration": segment_end_sec - segment_start_sec,
+        #             "segment_audio_bytes": wav_to_bytes(
+        #                 trimmed_waveform, reading_sr, self.config.audio_format
+        #             ),
+        #         }
+        #     )
+        # return audio_segments
         audio_segments = []
-        for span in spans:
+        for i, span in enumerate(spans):
             seg_start_idx, seg_end_idx = span[0].start, span[-1].end
             segment_start_sec = seg_start_idx * stride / self.scale
             segment_end_sec = seg_end_idx * stride / self.scale
             start_frame = int(segment_start_sec * reading_sr)
             end_frame = int(segment_end_sec * reading_sr)
             trimmed_waveform = waveform[:, start_frame:end_frame]
-
+        
+            # 🧩 Fix: Skip empty or invalid audio segments
+            if trimmed_waveform is None or trimmed_waveform.numel() == 0:
+                # logger.warning(
+                #     f"⚠️ Skipping empty audio segment {i} "
+                #     f"({segment_start_sec:.2f}-{segment_end_sec:.2f}s)"
+                # )
+                continue
+        
+            try:
+                audio_bytes = wav_to_bytes(trimmed_waveform, reading_sr, self.config.audio_format)
+            except Exception as e:
+                # logger.error(f"❌ Failed to convert segment {i} to bytes: {e}")
+                continue
+        
             audio_segments.append(
                 {
                     "segment_start_sec": segment_start_sec,
                     "segment_end_sec": segment_end_sec,
                     "segment_duration": segment_end_sec - segment_start_sec,
-                    "segment_audio_bytes": wav_to_bytes(
-                        trimmed_waveform, reading_sr, self.config.audio_format
-                    ),
+                    "segment_audio_bytes": audio_bytes,
                 }
             )
+        
         return audio_segments
+
 
