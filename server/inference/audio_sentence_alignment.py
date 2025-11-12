@@ -120,7 +120,8 @@ class AudioAlignment:
         self, audio_arr, reading_sr, tokens: List[str]
     ) -> List[Dict]:
         """Internal method to perform forced alignment."""
-        buffer = audio_arr.tobytes()
+        # buffer = audio_arr.tobytes()
+        buffer = audio_arr if isinstance(audio_arr, (bytes, bytearray)) else audio_arr.tobytes()
         waveform, audio_sf = torchaudio.load(io.BytesIO(buffer))
         waveform = waveform.to(self.device)
         assert audio_sf == reading_sr
@@ -181,3 +182,4 @@ class AudioAlignment:
                 }
             )
         return audio_segments
+
