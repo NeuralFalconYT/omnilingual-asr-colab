@@ -4,7 +4,8 @@ torchaudio==2.8.0+cu128
 --index-url https://download.pytorch.org/whl/cu128
 
 # Fairseq2 + Omnilingual ASR
-fairseq2n==0.6
+#fairseq2n==0.6
+fairseq2==0.6
 omnilingual-asr==0.1.0
 
 # Voice Activity Detection + Chunking
