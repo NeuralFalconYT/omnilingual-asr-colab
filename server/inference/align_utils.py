@@ -1,3 +1,5 @@
+#@title fix file path /content/omniasr-transcriptions/server/inference/align_utils.py
+# %%writefile /content/omniasr-transcriptions/server/inference/align_utils.py
 import math
 import os
 import re
@@ -81,7 +83,7 @@ def time_to_frame(time):
 
 def load_model_dict():
     # Use models directory from environment variable
-    models_dir = os.environ.get("MODELS_DIR", "/home/user/app/models")
+    models_dir = os.environ.get("MODELS_DIR", "./models")
     model_path_name = os.path.join(models_dir, "ctc_alignment_mling_uroman_model.pt")
 
     logger.info("Loading model from models directory...")
@@ -120,7 +122,7 @@ def load_model_dict():
     model.eval()
 
     # Use models directory from environment variable
-    models_dir = os.environ.get("MODELS_DIR", "/home/user/app/models")
+    models_dir = os.environ.get("MODELS_DIR", "./models")
     dict_path_name = os.path.join(
         models_dir, "ctc_alignment_mling_uroman_model_dict.txt"
     )
