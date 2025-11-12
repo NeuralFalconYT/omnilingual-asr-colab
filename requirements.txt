@@ -1,0 +1,15 @@
+# Core PyTorch (CUDA 12.8)
+torch==2.8.0+cu128
+torchaudio==2.8.0+cu128
+--index-url https://download.pytorch.org/whl/cu128
+
+# Fairseq2 + Omnilingual ASR
+fairseq2n
+omnilingual-asr
+
+# Voice Activity Detection + Chunking
+silero-vad>=4.0.0
+onnxruntime>=1.12.0
+
+# Text romanization (used by alignment)
+uroman==1.3.1.1
